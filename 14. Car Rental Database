@@ -1,0 +1,99 @@
+CREATE TABLE Categories(
+Id INT PRIMARY KEY NOT NULL,
+CategoryName NVARCHAR(50) NOT NULL,
+DailyRate DECIMAL(4, 2),
+WeeklyRate DECIMAL(4, 2),
+MonthlyRate DECIMAL(4, 2),
+WeekendRate DECIMAL(4, 2)
+)
+
+
+-- •	Cars (Id, PlateNumber, Manufacturer, Model, CarYear, CategoryId, Doors, Picture, Condition, Available)
+CREATE TABLE Cars(
+Id INT PRIMARY KEY NOT NULL,
+PlateNumber NVARCHAR(50) UNIQUE NOT NULL,
+Manufacturer NVARCHAR(50) NOT NULL,
+Model NVARCHAR(50) NOT NULL,
+CarYear INT,
+CategoryId INT NOT NULL,
+Doors INT,
+Picture VARBINARY(MAX),
+Condition NVARCHAR(20),
+Available BIT NOT NULL
+)
+
+
+--•	Employees (Id, FirstName, LastName, Title, Notes)
+
+CREATE TABLE Employees(
+Id INT PRIMARY KEY NOT NULL,
+FirstName NVARCHAR(50) NOT NULL,
+LastName NVARCHAR(50) NOT NULL,
+Title NVARCHAR(50),
+Notes NVARCHAR(MAX)
+)
+
+--•	Customers (Id, DriverLicenceNumber, FullName, Address, City, ZIPCode, Notes)
+
+CREATE TABLE Customers(
+Id INT PRIMARY KEY NOT NULL,
+DriverLicenceNumber INT NOT NULL,
+FullName NVARCHAR(50) NOT NULL,
+[Address] NVARCHAR(MAX),
+City NVARCHAR(50),
+ZIPCode INT NOT NULL,
+Notes NVARCHAR(MAX)
+)
+
+
+
+--RentalOrders (Id, EmployeeId, CustomerId, CarId, TankLevel, KilometrageStart, KilometrageEnd, TotalKilometrage,
+--StartDate, EndDate, TotalDays, RateApplied, TaxRate, OrderStatus, Notes)
+ 
+CREATE TABLE RentalOrders(
+Id INT PRIMARY KEY NOT NULL,
+EmployeeId INT NOT NULL,
+CustomerId INT NOT NULL,
+CarId INT NOT NULL,
+TankLevel INT,
+KilometrageStart INT NOT NULL,
+KilometrageEnd INT NOT NULL,
+TotalKilometrage INT NOT NULL,
+StartDate DATE NOT NULL,
+EndDate DATE NOT NULL,
+TotalDays INT NOT NULL,
+RateApplied BIT NOT NULL,
+TaxRate INT,
+OrderStatus NVARCHAR(50),
+Notes NVARCHAR(MAX)
+)
+
+INSERT INTO Categories(Id, CategoryName, DailyRate, WeeklyRate, MonthlyRate, WeekendRate)
+	VALUES 
+	(1, 'Weels', 4, 6, 5, 6),
+	(2, 'Seats', 3, 5, 4, 5),
+	(3, 'Windows', 3, 5, 4, 5)
+
+INSERT INTO Cars(Id, PlateNumber, Manufacturer, Model, CarYear, CategoryId, Doors, Picture, Condition, Available)
+	VALUES 
+	(1, 1452654, 'China', 'Toyota', 2015,1, 4,NULL, 'GOOD', 1),
+	(2, 1717885, 'Germany', 'BMW', 2020,2, 4, NULL, 'very nice', 0),
+	(3, 654235, 'Italy', 'Fiat', 2017,3, 4,NULL,'okay', 1)
+
+INSERT INTO Employees (Id, FirstName, LastName, Title, Notes)
+	VALUES
+		(1, 'Kako', 'Kakov', 'Nema', 'Mnogo notes'),
+		(2, 'Eho', 'Ehov', 'Zaglavie', 'Pak mnoogo'),
+		(3, 'Alo', 'Alov', 'Kk', 'Notove')
+
+INSERT INTO Customers (Id, DriverLicenceNumber, FullName, [Address], City, ZIPCode, Notes)
+	VALUES
+		(1, 123456, 'Koko Kokov', 'ul.Kku', 'Sofia', 1700, 'oki'),
+		(2, 56478, 'Lolo Lok', 'ul. Kajs', 'Plovdiv', 1235, 'emi'),
+		(3, 62145, 'AKd rfe', 'ul. akd', 'Varna', 1654, 'eho')
+
+INSERT INTO RentalOrders (Id, EmployeeId, CustomerId, CarId, TankLevel, KilometrageStart, KilometrageEnd, TotalKilometrage, StartDate, EndDate, TotalDays, RateApplied, TaxRate, OrderStatus, Notes)
+	VALUES 
+	(1, 1, 1,1, 60, 21,65, 44, '05.03.2021', '09.03.2021', 4, 0, 6, 'PENDING', 'NEMA'),
+	(2,2,2,2, 26, 32, 70, 38, '01.01.2021', '05.01.2021', 3, 1, 7, 'FULL', 'MNOGO NOTES'),
+	(3,3,3,3, 68, 15, 30, 15, '06.21.2021', '06.28.2021', 5, 0, 5, 'OKAY', 'NQMA')
