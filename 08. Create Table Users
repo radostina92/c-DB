@@ -1,0 +1,17 @@
+CREATE TABLE Users(
+Id BIGINT PRIMARY KEY IDENTITY NOT NULL,
+Username VARCHAR(30) UNIQUE NOT NULL,
+[Password] VARCHAR(26) NOT NULL,
+ProfilePicture VARBINARY(MAX)
+CHECK(DATALENGTH(ProfilePicture) <= 900 * 1024),
+LastLoginTime DATETIME2 NOT NULL,
+IsDeleted BIT NOT NULL
+)
+
+INSERT INTO Users(Username, [Password], LastLoginTime, IsDeleted)
+	VALUES
+		('Pesho Peshov', '123456', '05.11.2021', 0),
+		('Ana Jekova', '456789','12.16.2005', 0),
+		('Aleksa Minsa', '154625','06.02.1993', 1),
+		('Eho Ehov', '25478', '02.06.1995', 1),
+		('Eho Bohov', '25478', '02.06.1995', 1)
