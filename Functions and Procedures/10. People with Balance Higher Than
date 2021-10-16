@@ -1,0 +1,9 @@
+CREATE PROC usp_GetHoldersWithBalanceHigherThan(@number DECIMAL(18,4))
+AS
+BEGIN
+SELECT FirstName, LastName FROM AccountHolders ah
+JOIN Accounts a ON (ah.Id = a.AccountHolderId)
+GROUP BY FirstName, LastName
+HAVING SUM(a.Balance) > @number
+ORDER BY FirstName, LastName
+END
