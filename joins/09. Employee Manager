@@ -1,0 +1,4 @@
+SELECT em.EmployeeID, em.FirstName, em.ManagerID, e.FirstName FROM Employees e
+JOIN Employees em ON e.EmployeeID = em.ManagerID
+WHERE em.ManagerID IN (3,7)
+ORDER BY EmployeeID
