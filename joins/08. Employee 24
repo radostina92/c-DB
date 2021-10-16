@@ -1,0 +1,8 @@
+SELECT ep.EmployeeID, e.FirstName,
+CASE 
+	WHEN YEAR(p.StartDate) < 2005 THEN ISNULL(p.[Name], NULL)
+END AS ProjectName
+FROM EmployeesProjects ep
+JOIN Employees e ON ep.EmployeeID = e.EmployeeID
+JOIN Projects p ON ep.ProjectID = p.ProjectID
+WHERE e.EmployeeID = 24
