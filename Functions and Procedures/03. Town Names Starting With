@@ -1,0 +1,4 @@
+CREATE PROC usp_GetTownsStartingWith @Name NVARCHAR(50)
+AS
+SELECT [Name] FROM Towns
+WHERE [Name] LIKE  @Name + '%'
