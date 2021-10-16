@@ -1,0 +1,6 @@
+SELECT TOP(1)
+(SELECT AVG(Salary) FROM Employees e WHERE e.DepartmentID = d.DepartmentID)
+AS MinAverageSalary
+FROM Departments d
+WHERE (SELECT COUNT(*) FROM Employees e WHERE e.DepartmentID = d.DepartmentID) > 0
+ORDER BY MinAverageSalary
